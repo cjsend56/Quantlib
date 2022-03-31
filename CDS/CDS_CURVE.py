@@ -59,7 +59,7 @@ def SWAP_CURVE(today, quote):
     ql.Settings.instance().evaluationDate = todays_date
     
     # Market Conventions
-    calendar = ql.UnitedStates()
+    calendar = ql.JointCalendar(ql.SouthKorea(), ql.UnitedStates())
     dayCounter = ql.Actual360()
     convention = ql.ModifiedFollowing
     settlementDays = 2
