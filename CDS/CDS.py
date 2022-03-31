@@ -114,10 +114,10 @@ class CDS():
 
 if __name__ == "__main__":
 
-	todaysDate = datetime.date(2022, 3, 15)
+	todaysDate = datetime.date(2022, 3, 30)
 
 	notional = 100000000
-	maturity = datetime.date(2024, 12, 20)
+	maturity = datetime.date(2027, 3, 30)
 	spread = 40
 	position = "Short"
 

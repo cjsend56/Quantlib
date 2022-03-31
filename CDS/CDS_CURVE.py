@@ -1,4 +1,5 @@
 import datetime
+from dateutil.relativedelta import relativedelta
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -20,7 +21,25 @@ def GET_IRS_QUOTE(today):
     
     # Pre-process DataFrame
     curve['DaysToMaturity'] = np.nan
-    curve['Maturity'] = pd.to_datetime(curve['Maturity']).dt.date
+    curve['Maturity'] = [today + relativedelta(months=1),
+                        today + relativedelta(months=2),
+                        today + relativedelta(months=3),
+                        today + relativedelta(months=6),
+                        today + relativedelta(years=1),
+                        today + relativedelta(years=2),
+                        today + relativedelta(years=3),
+                        today + relativedelta(years=4),
+                        today + relativedelta(years=5),
+                        today + relativedelta(years=6),
+                        today + relativedelta(years=7),
+                        today + relativedelta(years=8),
+                        today + relativedelta(years=9),
+                        today + relativedelta(years=10),
+                        today + relativedelta(years=12),
+                        today + relativedelta(years=15),
+                        today + relativedelta(years=20),
+                        today + relativedelta(years=25),
+                        today + relativedelta(years=30),]
     
     for tenor in curve.index:
         curve.loc[tenor, 'DaysToMaturity'] = (curve.loc[tenor, 'Maturity'] - today).days
@@ -39,7 +58,15 @@ def GET_CDS_QUOTE(today):
     
     # Pre-process DataFrame
     curve['DaysToMaturity'] = np.nan
-    curve['Maturity'] = pd.to_datetime(curve['Maturity']).dt.date
+
+    curve['Maturity'] = [today + relativedelta(months=6),
+                        today + relativedelta(years=1),
+                        today + relativedelta(years=2),
+                        today + relativedelta(years=3),
+                        today + relativedelta(years=4),
+                        today + relativedelta(years=5),
+                        today + relativedelta(years=7),
+                        today + relativedelta(years=10)]
     
     for tenor in curve.index:
         curve.loc[tenor, 'DaysToMaturity'] = (curve.loc[tenor, 'Maturity'] - today).days
